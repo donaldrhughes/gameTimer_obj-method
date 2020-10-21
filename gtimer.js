@@ -7,27 +7,28 @@ let game = {
     timeAlotted: 0,
     timeLeft: 0,
     timer: 0,
-    setTimeLeft(){
+    setTimeLeft() {
         this.timeLeft = this.timeAlotted
     },
-    setTimeAlotted(amt){
+    setTimeAlotted(amt) {
         this.timeAlotted = amt
-    },
-    timer() {
-        this.timer = setInterval(() => { 
-            this.timeLeft--
-            if(this.timeLeft <= 0){
-                clearInterval(this.timer)
-            }
-            console.log(this.timeLeft)
-        }, 1000);
-        
     }
 }
-//set the time allotted when calling
 game.setTimeAlotted(5);
 //reset the timeLeft to the timeAlotted
 game.setTimeLeft();
 
 //start the timer
-game.timer();
+timer(game);
+
+//Timer function
+function timer(game) {
+    game.timeLeft = game.timeAlotted;
+    const timer = setInterval(function () {
+        game.timeLeft--
+        if (game.timeLeft <= 0) {
+            clearInterval(timer)
+        }
+        console.log(game.timeLeft);
+    }, 1000);
+}
